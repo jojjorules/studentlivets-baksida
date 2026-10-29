@@ -1,0 +1,60 @@
+---
+title: "Sömnens betydelse"
+---
+
+```{python}
+#| echo: false
+from _common import *
+
+df = load()
+```
+
+<!-- Exempelsida: kopiera den här filen för varje ny faktor (press.qmd, ekonomi.qmd ...) och byt kolumn. -->
+
+Sömnbrist är inte bara trötthet – forskning pekar på att det är en riskfaktor för depression och ångest. Syns det i datan?
+
+## Andel deprimerade per sömnkategori
+
+```{python}
+etiketter = {"Less than 5 hours": "Under 5 timmar", "5-6 hours": "5–6 timmar",
+             "7-8 hours": "7–8 timmar", "More than 8 hours": "Över 8 timmar"}
+g = andel_per_grupp(df, "sleepDuration")
+g["sleepDuration"] = g["sleepDuration"].map(etiketter)
+
+tabell(pd.DataFrame({
+    "Sömntid": g["sleepDuration"],
+    "Antal": g["count"],
+    "Andel av alla": g["andel"].map(procent),
+    "Anger depression": g["deprimerade"].map(procent),
+}))
+```
+
+```{python}
+stapel_andel(g, "sleepDuration", "Sömntid per natt").show()
+```
+
+## Skiljer sig grupperna åt?
+
+**H₀:** Deprimerade och icke-deprimerade studenter sover lika mycket i genomsnitt.
+**H₁:** Sömnmängden skiljer sig åt mellan grupperna. Signifikansnivå: α = 0,05.
+
+```{python}
+dep = df.loc[df["depression"] == 1, "sleepHours"].dropna()
+ej = df.loc[df["depression"] == 0, "sleepHours"].dropna()
+t, p = stats.ttest_ind(dep, ej, equal_var=False)   # Welch t-test
+d = cohens_d(dep, ej)
+
+tabell(pd.DataFrame([{
+    "Medel (deprimerade)": round(dep.mean(), 2),
+    "Medel (ej deprimerade)": round(ej.mean(), 2),
+    "t": round(t, 2),
+    "p-värde": p_text(p),
+    "Förkastar H₀": "Ja" if p < 0.05 else "Nej",
+    "Cohens d": round(d, 2),
+    "Effektstorlek": tolka_d(d),
+}]))
+```
+
+::: {.insikt}
+Skillnaden är statistiskt säker (p `{python} p_text(p)`), men effektstorleken är **`{python} tolka_d(d).lower()`** (d = `{python} f"{d:.2f}".replace(".", ",")`). Med nästan 28 000 svar blir även små skillnader signifikanta – därför redovisas effektstorleken bredvid p-värdet.
+:::

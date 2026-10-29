@@ -1,0 +1,16 @@
+[
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Studentlivets baksida",
+    "section": "",
+    "text": "Föreställ dig att vara student i Indien: långa studiedagar, prestationskrav och kanske en ekonomisk situation som inte ger mycket utrymme för fel. Den här analysen tar ett datadrivet grepp om den verkligheten och undersöker hur faktorer som sömn, studiebörda, akademisk och ekonomisk press hänger samman med studenternas psykiska hälsa."
+  },
+  {
+    "objectID": "index.html#hur-många-mår-dåligt",
+    "href": "index.html#hur-många-mår-dåligt",
+    "title": "Studentlivets baksida",
+    "section": "Hur många mår dåligt?",
+    "text": "Hur många mår dåligt?\n\n\nVisa koden\nfig = go.Figure(go.Pie(\n    labels=[\"Uppger depression\", \"Uppger inte depression\"],\n    values=[df[\"depression\"].sum(), n - df[\"depression\"].sum()],\n    hole=.45, sort=False, marker_colors=[BRUN, GRON],\n    textinfo=\"percent\", hovertemplate=\"%{label}: %{value} studenter&lt;extra&gt;&lt;/extra&gt;\",\n))\nfig.update_layout(height=360, showlegend=True)\nfig.show()\n\n\n        \n        \n        \n\n\n                            \n                                            \n\n\n\nAv 27 870 studenter uppger 58,5 % depression. Det är inte undantaget – det är normen.\n\n\n\n\n\n\n\nNoteraOm känsliga uppgifter\n\n\n\nDatasetet innehåller frågor om psykisk ohälsa och självmordstankar. Uppgifterna är anonymiserade och analyseras bara på gruppnivå. Om du själv mår dåligt: prata med någon du litar på, eller ring Mind Självmordslinjen på 90101."
+  }
+]

@@ -1,0 +1,38 @@
+project:
+  type: website
+  output-dir: docs        # GitHub Pages publicerar från mappen docs/
+
+lang: sv
+
+website:
+  title: "Studentlivets baksida"
+  description: "Depression bland studenter analyserad i Python – Johanna Markskog."
+  site-url: "https://jojjorules.github.io/studentlivets-baksida/"
+  open-graph: true
+  navbar:
+    right:
+      - icon: person-circle
+        href: https://jojjorules.github.io
+        aria-label: Portfolio
+      - icon: github
+        href: https://github.com/jojjorules/studentlivets-baksida
+        aria-label: Källkod på GitHub
+  page-footer:
+    left: "Johanna Markskog · Data Management-student, TUC Yrkeshögskola"
+    right: "Data: Student Depression Dataset (Kaggle) · Byggd med Python och Quarto"
+
+format:
+  html:
+    theme: [cosmo, styles.scss]
+    toc: false
+    code-fold: true          # koden finns men är dold – besökaren kan fälla ut den
+    code-summary: "Visa koden"
+    code-tools: false
+    smooth-scroll: true
+
+execute:
+  echo: true
+  warning: false
+  freeze: auto               # räknar bara om sidor som ändrats
+
+# Fler sidor ligger som utkast i mappen _utkast/ (Quarto hoppar över mappar som börjar med _).

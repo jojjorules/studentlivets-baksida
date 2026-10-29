@@ -1,0 +1,10 @@
+
+.quarto/
+_freeze/
+__pycache__/
+*.quarto_ipynb
+.venv/
+
+/.quarto/
+
+**/*.quarto_ipynb

@@ -1,0 +1,39 @@
+---
+title: "Studentlivets baksida"
+subtitle: "En studie om depression bland studenter i Indien"
+---
+
+```{python}
+#| echo: false
+from _common import *
+
+df = load()
+n = len(df)
+andel_dep = df["depression"].mean() * 100
+andel_tankar = df["suicidalThoughts"].mean() * 100
+```
+
+<!-- Skriv om inledningen med dina egna ord – det här är en platshållare. -->
+Föreställ dig att vara student i Indien: långa studiedagar, prestationskrav och kanske en ekonomisk situation som inte ger mycket utrymme för fel. Den här analysen tar ett datadrivet grepp om den verkligheten och undersöker hur faktorer som sömn, studiebörda, akademisk och ekonomisk press hänger samman med studenternas psykiska hälsa.
+
+## Hur många mår dåligt?
+
+```{python}
+fig = go.Figure(go.Pie(
+    labels=["Uppger depression", "Uppger inte depression"],
+    values=[df["depression"].sum(), n - df["depression"].sum()],
+    hole=.45, sort=False, marker_colors=[BRUN, GRON],
+    textinfo="percent", hovertemplate="%{label}: %{value} studenter<extra></extra>",
+))
+fig.update_layout(height=360, showlegend=True)
+fig.show()
+```
+
+::: {.insikt}
+Av **`{python} f"{n:,}".replace(",", " ")`** studenter uppger **`{python} procent(andel_dep)`** depression. Det är inte undantaget – det är normen.
+:::
+
+::: {.callout-note appearance="simple"}
+## Om känsliga uppgifter
+Datasetet innehåller frågor om psykisk ohälsa och självmordstankar. Uppgifterna är anonymiserade och analyseras bara på gruppnivå. Om du själv mår dåligt: prata med någon du litar på, eller ring Mind Självmordslinjen på 90101.
+:::

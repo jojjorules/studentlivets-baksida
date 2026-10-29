@@ -1,0 +1,18 @@
+steg,rader,beskrivning
+Inläsning,27901,Rådata inläst från Kaggle-filen
+Kolumnnamn,0,Bytte till camelCase utan mellanslag och frågetecken
+Citattecken,27883,Tog bort inbakade citattecken i sleepDuration
+Citattecken,8,Tog bort inbakade citattecken i profession
+Citattecken,2,Tog bort inbakade citattecken i city
+Citattecken,6080,Tog bort inbakade citattecken i degree
+Binära fält,0,suicidalThoughts och familyHistory: Yes/No → 1/0
+Saknade värden,3,financialStress: '?' → saknas
+Saknade värden,18,sleepDuration: 'Others' → saknas (går inte att tolka som timmar)
+Saknade värden,12,dietaryHabits: 'Others' → saknas
+Saknade värden,9,cgpa = 0 är troligen felregistrerat → saknas
+Ny kolumn,27883,sleepHours: sömnkategori → mittvärde i timmar
+Borttagen kolumn,27901,workPressure: 99.99% nollor – ingen användbar variation
+Borttagen kolumn,27901,jobSatisfaction: 99.97% nollor – ingen användbar variation
+Filtrering,31,Tog bort rader där yrket inte är 'Student'
+Dubbletter,0,Kontroll av dubbla id
+Resultat,27870,Rader i den analysklara filen

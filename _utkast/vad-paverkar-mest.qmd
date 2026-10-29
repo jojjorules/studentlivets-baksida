@@ -1,0 +1,63 @@
+---
+title: "Vad påverkar egentligen mest?"
+---
+
+```{python}
+#| echo: false
+from _common import *
+
+df = load()
+faktorer = {
+    "academicPressure": "Akademisk press",
+    "financialStress": "Ekonomisk stress",
+    "workStudyHours": "Studietimmar",
+    "sleepHours": "Sömnmängd (timmar)",
+    "cgpa": "Betygsnivå (CGPA)",
+}
+```
+
+Vilka faktorer samvarierar starkast med depression? **Korrelationskoefficienten (Pearson r)** mäter sambandet på en skala från −1 till +1. Eftersom depression är 0/1 är det tekniskt en *punktbiserial* korrelation.
+
+## Rankning av faktorer
+
+```{python}
+rader = []
+for kol, namn in faktorer.items():
+    d = df[[kol, "depression"]].dropna()
+    r, p = stats.pearsonr(d[kol], d["depression"])
+    rader.append({"Faktor": namn, "r": r, "Styrka": tolka_r(r), "p-värde": p_text(p),
+                  "Signifikant?": "Ja" if p < 0.05 else "Nej", "n": len(d)})
+korr = pd.DataFrame(rader).sort_values("r", key=abs, ascending=False)
+
+visa = korr.copy()
+visa["r"] = visa["r"].round(2)
+tabell(visa)
+```
+
+```{python}
+k = korr.sort_values("r", key=abs)  # starkast överst
+fig = go.Figure(go.Bar(
+    x=k["r"], y=k["Faktor"], orientation="h",
+    marker_color=[BRUN if r > 0 else GRON for r in k["r"]],
+    hovertemplate="%{y}: r = %{x:.3f}<extra></extra>",
+))
+fig.update_layout(height=360, xaxis_title="Pearson r", showlegend=False, margin=dict(l=160))
+fig.update_yaxes(automargin=True)
+fig.add_vline(x=0, line_color="#4A3426", line_width=1)
+fig.show()
+```
+
+::: {.insikt}
+Bruna staplar är riskfaktorer (positiv korrelation), gröna är skyddande (negativ).
+:::
+
+## Kausalitet – vad kan vi säga?
+
+<!-- Lärarens förbättringspunkt: fördjupa diskussionen om orsak och verkan här. Några frågor att resonera kring:
+  - Omvänd kausalitet: kan depression få studenter att *uppleva* mer press och stress?
+  - Confounders: vilka bakomliggande faktorer (t.ex. familjens ekonomi) kan påverka både stress och depression?
+  - Mätning: allt är självrapporterat i en enkät vid ett tillfälle (tvärsnittsdata).
+  - Vilken studiedesign hade krävts för att visa orsak? (longitudinell studie, experiment)
+-->
+
+*Skriv din egen reflektion här.*

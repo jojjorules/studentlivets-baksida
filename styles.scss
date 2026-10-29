@@ -1,0 +1,48 @@
+/*-- scss:defaults --*/
+$body-bg: #F7F3EE;
+$body-color: #4A3426;
+$primary: #6B3F24;
+$link-color: #8B4A2F;
+$navbar-bg: #EFE8DF;
+$navbar-fg: #5A3A26;
+$footer-bg: #EFE8DF;
+$font-family-sans-serif: "Inter", system-ui, sans-serif;
+$headings-font-family: "Playfair Display", Georgia, serif;
+$headings-color: #6B3F24;
+$code-block-bg: #FBF8F4;
+
+/*-- scss:rules --*/
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Playfair+Display:wght@600;700&display=swap');
+
+h1.title, h1 { font-weight: 700; }
+h2 { margin-top: 2.2rem; }
+
+/* Tabeller med brun rubrikrad, som i originalet */
+.table thead th,
+table.dataframe thead th {
+  background: #6B3F24;
+  color: #fff;
+  font-size: .78rem;
+  letter-spacing: .04em;
+  text-transform: uppercase;
+  border: none;
+}
+.table td { font-variant-numeric: tabular-nums; }
+
+/* Insikts-rutor: ::: {.insikt} ... ::: */
+.insikt {
+  background: #EDE6DE;
+  border-left: 4px solid #8B4A2F;
+  border-radius: 6px;
+  padding: 1rem 1.25rem;
+  margin: 1.5rem 0;
+  font-style: italic;
+}
+
+/* Diagramkort */
+.cell-output-display { background: #fff; border-radius: 8px; padding: .5rem; }
+
+details.code-fold summary { color: #8B4A2F; font-size: .85rem; }
+
+.callout.callout-style-simple { border-left-color: #8B4A2F !important; }
+.callout-note .callout-icon::before { filter: sepia(1) saturate(3) hue-rotate(-20deg); }

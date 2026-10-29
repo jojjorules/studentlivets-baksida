@@ -1,0 +1,51 @@
+---
+title: "Hur ser datasetet ut?"
+subtitle: "Från rådata till analysklar fil"
+---
+
+```{python}
+#| echo: false
+from _common import *
+
+df = load()
+logg = pd.read_csv("data/clean/rengoringslogg.csv")
+```
+
+Innan någon statistik går att lita på måste datan gå att lita på. Rådatan kommer från [Student Depression Dataset på Kaggle](https://www.kaggle.com/datasets/hopesb/student-depression-dataset) och rengörs i skriptet `scripts/01_rengoring.py`. Varje steg loggas, så att det går att se exakt vad som ändrats och varför.
+
+## Rengöringslogg
+
+```{python}
+tabell(logg.rename(columns={"steg": "Steg", "rader": "Rader", "beskrivning": "Vad och varför"}))
+```
+
+::: {.insikt}
+Två kolumner – arbetspress och arbetstillfredsställelse – var noll för i stort sett alla rader. De är inte fel i sig, men de säger ingenting om studenter och togs därför bort i stället för att ge missvisande "samband".
+:::
+
+## Variablerna
+
+```{python}
+beskrivning = {
+    "age": "Ålder (år)",
+    "academicPressure": "Akademisk press (1–5)",
+    "cgpa": "Betygsnivå, CGPA (0–10)",
+    "studySatisfaction": "Studienöjdhet (1–5)",
+    "sleepHours": "Sömn (timmar, mittvärde)",
+    "workStudyHours": "Studie-/arbetstimmar per dag",
+    "financialStress": "Ekonomisk stress (1–5)",
+}
+rader = []
+for kol, namn in beskrivning.items():
+    s = df[kol]
+    rader.append({
+        "Variabel": namn,
+        "Medel": round(s.mean(), 2),
+        "Median": s.median(),
+        "Std": round(s.std(), 2),
+        "Min": s.min(),
+        "Max": s.max(),
+        "Saknas": int(s.isna().sum()),
+    })
+tabell(pd.DataFrame(rader))
+```
