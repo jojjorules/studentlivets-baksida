@@ -32,21 +32,12 @@ styles.scss          Färgtema
 Kräver Python 3.10+ och [Quarto](https://quarto.org/docs/get-started/).
 
 ```bash
-# 1. Installera paket
-pip install -r requirements.txt
-
-# 2. Rengör datan
-python scripts/01_rengoring.py
-
-# 3. Förhandsgranska sajten (uppdateras när du sparar)
-quarto preview
-
-# 4. Bygg den färdiga sajten till mappen docs/
-quarto render
+py -m pip install -r requirements.txt   # installera paket
+py scripts/01_rengoring.py              # rådata → analysklar fil + logg
+quarto render                           # bygger sajten till docs/
 ```
 
-## Publicera
-`quarto render` bygger sajten till mappen `docs/`, som GitHub Pages publicerar (Settings → Pages → Branch: main, mapp: /docs).
+*På Mac/Linux: använd `python3` i stället för `py`.*
 
 ## Begränsningar
 Alla samband är korrelationer i tvärsnittsdata och självrapporterade svar. De visar *att* saker hänger ihop, inte *varför*.
