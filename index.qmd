@@ -13,7 +13,6 @@ andel_dep = df["depression"].mean() * 100
 andel_tankar = df["suicidalThoughts"].mean() * 100
 ```
 
-<!-- Skriv om inledningen med dina egna ord – det här är en platshållare. -->
 Föreställ dig att vara student i Indien: långa studiedagar, prestationskrav och kanske en ekonomisk situation som inte ger mycket utrymme för fel. Den här analysen tar ett datadrivet grepp om den verkligheten och undersöker hur faktorer som sömn, studiebörda, akademisk och ekonomisk press hänger samman med studenternas psykiska hälsa.
 
 ## Hur många mår dåligt?
