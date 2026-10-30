@@ -18,7 +18,7 @@ website:
         href: https://github.com/jojjorules/studentlivets-baksida
         aria-label: Källkod på GitHub
   page-footer:
-    left: "Johanna Markskog · Data Management-student, TUC Yrkeshögskola"
+    left: "Johanna Markskog · Data Manager · TUC Yrkeshögskola"
     right: "Data: Student Depression Dataset (Kaggle) · Byggd med Python och Quarto"
 
 format:

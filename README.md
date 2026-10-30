@@ -43,4 +43,4 @@ quarto render                           # bygger sajten till docs/
 Alla samband är korrelationer i tvärsnittsdata och självrapporterade svar. De visar *att* saker hänger ihop, inte *varför*.
 
 ---
-Johanna Markskog · Data Management-student, TUC Yrkeshögskola
+Johanna Markskog · Data Manager · TUC Yrkeshögskola
